@@ -167,14 +167,16 @@ void PluginAdvancedAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
 								channelData,
 								buffer.getNumSamples());
 
-		mLfo[channel]->process(0.25, 0.5, buffer.getNumSamples());
+		mLfo[channel]->process(0.25, 
+								0.5, 
+								buffer.getNumSamples());
 
 		mDelay[channel]->process(channelData, 
 								0.25, 
 								0.5, 
 								0.35, 
-								channelData,
 								mLfo[channel]->getBuffer(),
+								channelData,
 								buffer.getNumSamples());
         // ..do something to the data...
     }
@@ -213,6 +215,7 @@ void PluginAdvancedAudioProcessor::initializeDSP() {
 		mDelay[i] = std::make_unique<ASHUMDelay>();
 		mLfo[i] = std::make_unique<ASHUMLfo>();
 	}
+	
 }
 
 //==============================================================================

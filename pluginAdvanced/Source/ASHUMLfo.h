@@ -9,7 +9,8 @@
 */
 
 #pragma once
-#include "AHUMAudioHelpers.h";
+#include "AHUMAudioHelpers.h"
+
 class ASHUMLfo {
 public:
 	ASHUMLfo();

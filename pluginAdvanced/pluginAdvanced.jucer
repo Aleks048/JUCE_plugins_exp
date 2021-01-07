@@ -3,9 +3,39 @@
 <JUCERPROJECT id="gk8Zea" name="pluginAdvanced" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="sTAObr" name="pluginAdvanced">
+    <GROUP id="{CCF872AF-F920-1CF6-F24A-01EC466840B8}" name="Panels">
+      <FILE id="tHm5Zw" name="ASHUMCenterPanel.cpp" compile="1" resource="0"
+            file="Source/ASHUMCenterPanel.cpp"/>
+      <FILE id="dIpnNq" name="ASHUMCenterPanel.h" compile="0" resource="0"
+            file="Source/ASHUMCenterPanel.h"/>
+      <FILE id="EHLcdY" name="ASHUMCenterPanelMenuBar.cpp" compile="1" resource="0"
+            file="Source/ASHUMCenterPanelMenuBar.cpp"/>
+      <FILE id="QkogAK" name="ASHUMCenterPanelMenuBar.h" compile="0" resource="0"
+            file="Source/ASHUMCenterPanelMenuBar.h"/>
+      <FILE id="Ncnz9n" name="ASHUMFxPanel.cpp" compile="1" resource="0"
+            file="Source/ASHUMFxPanel.cpp"/>
+      <FILE id="x437yp" name="ASHUMFxPanel.h" compile="0" resource="0" file="Source/ASHUMFxPanel.h"/>
+      <FILE id="ZI7k7O" name="ASHUMGainPanel.cpp" compile="1" resource="0"
+            file="Source/ASHUMGainPanel.cpp"/>
+      <FILE id="skf4cZ" name="ASHUMGainPanel.h" compile="0" resource="0"
+            file="Source/ASHUMGainPanel.h"/>
+      <FILE id="p0c7Zw" name="ASHUMMainPanel.cpp" compile="1" resource="0"
+            file="Source/ASHUMMainPanel.cpp"/>
+      <FILE id="q6OtIT" name="ASHUMMainPanel.h" compile="0" resource="0"
+            file="Source/ASHUMMainPanel.h"/>
+      <FILE id="Hg303r" name="ASHUMPanelBase.cpp" compile="1" resource="0"
+            file="Source/ASHUMPanelBase.cpp"/>
+      <FILE id="JjGju2" name="ASHUMPanelBase.h" compile="0" resource="0"
+            file="Source/ASHUMPanelBase.h"/>
+      <FILE id="dozzOs" name="ASHUMTopPanel.cpp" compile="1" resource="0"
+            file="Source/ASHUMTopPanel.cpp"/>
+      <FILE id="CUdIfi" name="ASHUMTopPanel.h" compile="0" resource="0" file="Source/ASHUMTopPanel.h"/>
+    </GROUP>
     <GROUP id="{9312539F-BE96-744E-8309-EAB8F9F3D200}" name="Helpers">
       <FILE id="gXKxRq" name="AHUMAudioHelpers.h" compile="0" resource="0"
             file="Source/AHUMAudioHelpers.h"/>
+      <FILE id="lq6n2z" name="ASHUMInterfaceDefines.h" compile="0" resource="0"
+            file="Source/ASHUMInterfaceDefines.h"/>
     </GROUP>
     <GROUP id="{2D7B6C69-CEC5-4FEF-97E4-E053C27FB459}" name="DSP">
       <FILE id="Galx1t" name="ASHUMDelay.cpp" compile="1" resource="0" file="Source/ASHUMDelay.cpp"/>

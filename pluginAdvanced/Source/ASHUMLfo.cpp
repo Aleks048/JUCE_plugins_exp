@@ -10,7 +10,7 @@
 
 #include "ASHUMLfo.h"
 #include "JuceHeader.h"
-ASHUMLfo::ASHUMLfo() {
+ASHUMLfo::ASHUMLfo(): mSampleRate(-1){
 	reset();
 }
 ASHUMLfo::~ASHUMLfo() {}

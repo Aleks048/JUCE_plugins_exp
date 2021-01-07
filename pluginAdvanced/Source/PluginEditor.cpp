@@ -15,7 +15,10 @@ PluginAdvancedAudioProcessorEditor::PluginAdvancedAudioProcessorEditor (PluginAd
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
+
+	mMainPanel = std::make_unique<ASHUMMainPanel>(&audioProcessor);
+	addAndMakeVisible(*mMainPanel);
 }
 
 PluginAdvancedAudioProcessorEditor::~PluginAdvancedAudioProcessorEditor()
