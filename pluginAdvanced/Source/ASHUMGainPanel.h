@@ -9,3 +9,11 @@
 */
 
 #pragma once
+#include "ASHUMPanelBase.h"
+
+class ASHUMGainPanel: public ASHUMPanelBase {
+public:
+	ASHUMGainPanel(PluginAdvancedAudioProcessor* inProcessor);
+	~ASHUMGainPanel();
+private:
+};

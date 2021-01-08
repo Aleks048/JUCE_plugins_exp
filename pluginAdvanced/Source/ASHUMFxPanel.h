@@ -9,3 +9,23 @@
 */
 
 #pragma once
+#include "ASHUMPanelBase.h"
+
+enum ASHUMFxPanelStyle {
+	kASHUMFxPanelStyle_Delay,
+	kASHUMFxPanelStyle_Chorus,
+	kASHUMFxPanelStyle_TotalNUmStyles,
+
+};
+
+class ASHUMFxPanel :public ASHUMPanelBase {
+public:
+	ASHUMFxPanel(PluginAdvancedAudioProcessor* inProcessor);
+	~ASHUMFxPanel();
+
+	void paint(Graphics& g) override;
+
+	void setFxPanelStyle(ASHUMFxPanelStyle inStyle);
+private:
+	ASHUMFxPanelStyle mStyle;
+};

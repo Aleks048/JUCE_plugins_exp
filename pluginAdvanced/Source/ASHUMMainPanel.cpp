@@ -16,6 +16,17 @@ ASHUMMainPanel::ASHUMMainPanel(PluginAdvancedAudioProcessor* inProcessor)
 	mTopPanel = std::make_unique<ASHUMTopPanel>(inProcessor);
 	mTopPanel->setTopLeftPosition(0, 0);
 	addAndMakeVisible(*mTopPanel);
+
+	mInputGain = std::make_unique<ASHUMGainPanel>(inProcessor);
+	mInputGain->setTopLeftPosition(0, TOP_PANEL_HEIGHT);
+	addAndMakeVisible(*mInputGain);
+	mOutputGain = std::make_unique<ASHUMGainPanel>(inProcessor);
+	mOutputGain->setTopLeftPosition(MAIN_PANEL_WIDTH-GAIN_PANEL_WIDTH, TOP_PANEL_HEIGHT);
+	addAndMakeVisible(*mOutputGain);
+
+	mCenterPanel = std::make_unique<ASHUMCenterPanel>(inProcessor);
+	mCenterPanel->setTopLeftPosition(GAIN_PANEL_WIDTH, TOP_PANEL_HEIGHT);
+	addAndMakeVisible(*mCenterPanel);
 }
 ASHUMMainPanel::~ASHUMMainPanel() {
 

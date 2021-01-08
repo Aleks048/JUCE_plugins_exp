@@ -9,3 +9,9 @@
 */
 
 #include "ASHUMGainPanel.h"
+ASHUMGainPanel::ASHUMGainPanel(PluginAdvancedAudioProcessor* inProcessor) :
+	ASHUMPanelBase(inProcessor)
+{
+	setSize(GAIN_PANEL_WIDTH, GAIN_PANEL_HEIGHT);
+}
+ASHUMGainPanel::~ASHUMGainPanel() {}

@@ -11,6 +11,9 @@
 #pragma once
 #include "ASHUMPanelBase.h"
 #include "ASHUMTopPanel.h"
+#include "ASHUMGainPanel.h"
+#include "ASHUMCenterPanel.h"
+
 class ASHUMMainPanel 
 	: public ASHUMPanelBase
 {
@@ -19,4 +22,9 @@ public:
 	~ASHUMMainPanel();
 private:
 	std::unique_ptr<ASHUMTopPanel> mTopPanel;
+
+	std::unique_ptr<ASHUMGainPanel> mInputGain;
+	std::unique_ptr<ASHUMGainPanel> mOutputGain;
+
+	std::unique_ptr<ASHUMCenterPanel> mCenterPanel;
 };

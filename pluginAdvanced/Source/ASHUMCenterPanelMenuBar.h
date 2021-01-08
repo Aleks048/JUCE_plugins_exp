@@ -9,3 +9,12 @@
 */
 
 #pragma once
+#include "ASHUMPAnelBase.h"
+
+class ASHUMCenterPanelMenuBar :public ASHUMPanelBase{
+public:
+	ASHUMCenterPanelMenuBar(PluginAdvancedAudioProcessor* inProcessor);
+	~ASHUMCenterPanelMenuBar();
+private:
+
+};

@@ -9,3 +9,15 @@
 */
 
 #pragma once
+#include "ASHUMPanelBase.h"
+#include "ASHUMCenterPanelMenuBar.h"
+#include "ASHUMFxPanel.h"
+
+class ASHUMCenterPanel :public ASHUMPanelBase{
+public:
+	ASHUMCenterPanel(PluginAdvancedAudioProcessor* inProcessor);
+	~ASHUMCenterPanel();
+private:
+	std::unique_ptr<ASHUMCenterPanelMenuBar> mMenuBar;
+	std::unique_ptr<ASHUMFxPanel> mFxPanel;
+};
