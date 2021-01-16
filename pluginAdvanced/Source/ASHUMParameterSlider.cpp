@@ -9,12 +9,12 @@
 */
 
 #include "ASHUMParameterSlider.h"
-ASHUMParameterSlider::ASHUMParameterSlider(juce::AudioProcessorValueTreeState& stateToControl,
-	const juce::String& parameterID) 
+ASHUMParameterSlider::ASHUMParameterSlider(juce::AudioProcessorValueTreeState& stateToControl, 
+															const juce::String& parameterID) 
 	: juce::Slider(parameterID)
 {
 	setSliderStyle(SliderStyle::RotaryHorizontalVerticalDrag);
-	setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, true, 0, 0);
+	setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 0, 0);
 
 	setRange(0.f, 1.f,.001f);
 

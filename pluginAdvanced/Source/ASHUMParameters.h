@@ -30,6 +30,7 @@ static juce::String ASHUMParameterID [kParameter_TotalNumParameters] =
 	"Feedback",
 	"Wet Dry",
 	"Type",
+	"Output Gain",
 	"Modulation Rate",
 	"Modulation Depth",
 };

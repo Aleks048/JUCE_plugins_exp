@@ -166,7 +166,7 @@ void PluginAdvancedAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
         auto* channelData = buffer.getWritePointer (channel);
 
 
-		mGain[channel]->process(channelData, 
+		inputGain[channel]->process(channelData,
 								getParameter(kParameter_InputGain), 
 								channelData,
 								buffer.getNumSamples());
@@ -183,6 +183,11 @@ void PluginAdvancedAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
 								mLfo[channel]->getBuffer(),
 								channelData,
 								buffer.getNumSamples());
+		
+		outputGain[channel]->process(channelData,
+									getParameter(kParameter_OutputGain),
+									channelData,
+									buffer.getNumSamples());
         // ..do something to the data...
     }
 
@@ -216,7 +221,8 @@ void PluginAdvancedAudioProcessor::setStateInformation (const void* data, int si
 
 void PluginAdvancedAudioProcessor::initializeDSP() {
 	for (int i = 0; i < 2; i++) {
-		mGain[i] = std::make_unique<ASHUMGain>();
+		inputGain[i] = std::make_unique<ASHUMGain>();
+		outputGain[i] = std::make_unique<ASHUMGain>();
 		mDelay[i] = std::make_unique<ASHUMDelay>();
 		mLfo[i] = std::make_unique<ASHUMLfo>();
 	}
@@ -231,6 +237,8 @@ void PluginAdvancedAudioProcessor::initializeParameters() {
 										NormalisableRange<float>(.0f, 1.f),
 										.5f, nullptr, nullptr);
 	}
+	parameters.state = ValueTree("Foo");
+
 }
 //==============================================================================
 // This creates new instances of the plugin..

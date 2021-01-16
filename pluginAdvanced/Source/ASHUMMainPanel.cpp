@@ -9,6 +9,8 @@
 */
 
 #include "ASHUMMainPanel.h"
+#include "ASHUMParameters.h"
+
 ASHUMMainPanel::ASHUMMainPanel(PluginAdvancedAudioProcessor* inProcessor) 
 	:ASHUMPanelBase(inProcessor)
 {
@@ -19,9 +21,12 @@ ASHUMMainPanel::ASHUMMainPanel(PluginAdvancedAudioProcessor* inProcessor)
 
 	mInputGain = std::make_unique<ASHUMGainPanel>(inProcessor);
 	mInputGain->setTopLeftPosition(0, TOP_PANEL_HEIGHT);
+	mInputGain->setParameterID(kParameter_InputGain);
 	addAndMakeVisible(*mInputGain);
+
 	mOutputGain = std::make_unique<ASHUMGainPanel>(inProcessor);
 	mOutputGain->setTopLeftPosition(MAIN_PANEL_WIDTH-GAIN_PANEL_WIDTH, TOP_PANEL_HEIGHT);
+	mOutputGain->setParameterID(kParameter_OutputGain);
 	addAndMakeVisible(*mOutputGain);
 
 	mCenterPanel = std::make_unique<ASHUMCenterPanel>(inProcessor);

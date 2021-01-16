@@ -10,10 +10,14 @@
 
 #pragma once
 #include "ASHUMPanelBase.h"
+#include "ASHUMParameterSlider.h"
 
 class ASHUMGainPanel: public ASHUMPanelBase {
 public:
 	ASHUMGainPanel(PluginAdvancedAudioProcessor* inProcessor);
 	~ASHUMGainPanel();
+
+	void setParameterID(int iParameterID);
 private:
+	std::unique_ptr<ASHUMParameterSlider> mSlider;
 };

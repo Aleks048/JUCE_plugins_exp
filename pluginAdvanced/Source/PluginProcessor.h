@@ -67,7 +67,8 @@ private:
 
 
 
-	std::unique_ptr<ASHUMGain> mGain[2];
+	std::unique_ptr<ASHUMGain> inputGain[2];
+	std::unique_ptr<ASHUMGain> outputGain[2];
 	std::unique_ptr<ASHUMDelay> mDelay[2];
 	std::unique_ptr<ASHUMLfo> mLfo[2];
     //==============================================================================
