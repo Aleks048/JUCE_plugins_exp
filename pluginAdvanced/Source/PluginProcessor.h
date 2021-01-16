@@ -12,6 +12,7 @@
 #include "ASHUMGain.h"
 #include "ASHUMDelay.h"
 #include "ASHUMLfo.h"
+#include "ASHUMParameters.h"
 
 using namespace juce;
 //==============================================================================
@@ -57,11 +58,15 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+	AudioProcessorValueTreeState parameters;// to store the value of parameters here
+
 private:
 	/** internal*/
 	void initializeDSP();
+	void initializeParameters();
 
-	//ScopedPointer<ASHUMGain> mGain [2];
+
+
 	std::unique_ptr<ASHUMGain> mGain[2];
 	std::unique_ptr<ASHUMDelay> mDelay[2];
 	std::unique_ptr<ASHUMLfo> mLfo[2];

@@ -19,10 +19,14 @@ PluginAdvancedAudioProcessor::PluginAdvancedAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+	parameters(*this,nullptr)
 #endif
 {
+	initializeParameters();
+
 	initializeDSP();
+
 }
 
 PluginAdvancedAudioProcessor::~PluginAdvancedAudioProcessor()
@@ -163,18 +167,19 @@ void PluginAdvancedAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
 
 
 		mGain[channel]->process(channelData, 
-								0.5, 
+								getParameter(kParameter_InputGain), 
 								channelData,
 								buffer.getNumSamples());
 
-		mLfo[channel]->process(0.25, 
-								0.5, 
+		float rate = (channel == 0) ? 0 : getParameter(kParameter_ModulationRate);
+		mLfo[channel]->process(rate,
+								getParameter(kParameter_ModulationDepth), 
 								buffer.getNumSamples());
 
 		mDelay[channel]->process(channelData, 
-								0.25, 
-								0.5, 
-								0.35, 
+								getParameter(kParameter_DelayTime), 
+								getParameter(kParameter_DelayFeedback),
+								getParameter(kParameter_DelayWetDry), 
 								mLfo[channel]->getBuffer(),
 								channelData,
 								buffer.getNumSamples());
@@ -218,6 +223,15 @@ void PluginAdvancedAudioProcessor::initializeDSP() {
 	
 }
 
+void PluginAdvancedAudioProcessor::initializeParameters() {
+	for (int i = 0; i < kParameter_TotalNumParameters; i++) {
+		parameters.createAndAddParameter(ASHUMParameterID[i],
+										ASHUMParameterID[i],
+										ASHUMParameterID[i],
+										NormalisableRange<float>(.0f, 1.f),
+										.5f, nullptr, nullptr);
+	}
+}
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()

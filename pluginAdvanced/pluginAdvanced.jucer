@@ -3,6 +3,16 @@
 <JUCERPROJECT id="gk8Zea" name="pluginAdvanced" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="sTAObr" name="pluginAdvanced">
+    <GROUP id="{4688DFCC-A7FF-92BE-AE9C-07314E443640}" name="Parameter Control">
+      <FILE id="Kl7TF1" name="ASHUMParameterComboBox.cpp" compile="1" resource="0"
+            file="Source/ASHUMParameterComboBox.cpp"/>
+      <FILE id="hgk0zX" name="ASHUMParameterComboBox.h" compile="0" resource="0"
+            file="Source/ASHUMParameterComboBox.h"/>
+      <FILE id="jOIhh8" name="ASHUMParameterSlider.cpp" compile="1" resource="0"
+            file="Source/ASHUMParameterSlider.cpp"/>
+      <FILE id="kVMc5d" name="ASHUMParameterSlider.h" compile="0" resource="0"
+            file="Source/ASHUMParameterSlider.h"/>
+    </GROUP>
     <GROUP id="{CCF872AF-F920-1CF6-F24A-01EC466840B8}" name="Panels">
       <FILE id="tHm5Zw" name="ASHUMCenterPanel.cpp" compile="1" resource="0"
             file="Source/ASHUMCenterPanel.cpp"/>
@@ -36,6 +46,8 @@
             file="Source/AHUMAudioHelpers.h"/>
       <FILE id="lq6n2z" name="ASHUMInterfaceDefines.h" compile="0" resource="0"
             file="Source/ASHUMInterfaceDefines.h"/>
+      <FILE id="q6HGR7" name="ASHUMParameters.h" compile="0" resource="0"
+            file="Source/ASHUMParameters.h"/>
     </GROUP>
     <GROUP id="{2D7B6C69-CEC5-4FEF-97E4-E053C27FB459}" name="DSP">
       <FILE id="Galx1t" name="ASHUMDelay.cpp" compile="1" resource="0" file="Source/ASHUMDelay.cpp"/>
