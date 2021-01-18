@@ -10,6 +10,7 @@
 
 #include "ASHUMGainPanel.h"
 #include "ASHUMParameters.h"
+#include "ASHUMHelperFunctions.h"
 
 ASHUMGainPanel::ASHUMGainPanel(PluginAdvancedAudioProcessor* inProcessor) :
 	ASHUMPanelBase(inProcessor)
@@ -19,7 +20,7 @@ ASHUMGainPanel::ASHUMGainPanel(PluginAdvancedAudioProcessor* inProcessor) :
 ASHUMGainPanel::~ASHUMGainPanel() {}
 
 void ASHUMGainPanel::setParameterID(int inParameterID) {
-	mSlider = std::make_unique<ASHUMParameterSlider>(mProcessor->parameters,ASHUMParameterID[inParameterID]);
+	mSlider = new ASHUMParameterSlider(mProcessor->parameters,ASHUMParameterID[inParameterID]);
 
 	const int slider_size = 54;
 
@@ -29,3 +30,11 @@ void ASHUMGainPanel::setParameterID(int inParameterID) {
 						slider_size);
 	addAndMakeVisible(*mSlider);
 };
+
+void ASHUMGainPanel::paint(Graphics& g) {
+	ASHUMPanelBase::paint(g);
+
+	if (mSlider) {
+		paintComponentLabel(g, mSlider);
+	}
+}

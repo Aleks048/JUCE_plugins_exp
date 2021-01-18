@@ -12,6 +12,11 @@
 
 #include "AHUMAudioHelpers.h"
 
+enum ASHUMDelayType {
+	kASHUMDelayType_Delay=0,
+	kASHUMDelayType_Chorus=1
+};
+
 class ASHUMDelay {
 public:
 	ASHUMDelay();
@@ -24,6 +29,7 @@ public:
 		float inTime,
 		float inFeedback,
 		float inWetDry,
+		float inType,
 		float* inModulationBuffer,
 		float* outAudio,
 		int inNumSamplesToRender);

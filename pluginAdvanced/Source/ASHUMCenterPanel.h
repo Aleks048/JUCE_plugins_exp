@@ -19,5 +19,5 @@ public:
 	~ASHUMCenterPanel();
 private:
 	std::unique_ptr<ASHUMCenterPanelMenuBar> mMenuBar;
-	std::unique_ptr<ASHUMFxPanel> mFxPanel;
+	juce::ScopedPointer<ASHUMFxPanel> mFxPanel;
 };

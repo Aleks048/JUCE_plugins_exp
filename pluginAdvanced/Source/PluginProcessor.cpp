@@ -180,6 +180,7 @@ void PluginAdvancedAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
 								getParameter(kParameter_DelayTime), 
 								getParameter(kParameter_DelayFeedback),
 								getParameter(kParameter_DelayWetDry), 
+								getParameter(kParameter_DelayFeedback),
 								mLfo[channel]->getBuffer(),
 								channelData,
 								buffer.getNumSamples());

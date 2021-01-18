@@ -44,6 +44,8 @@
     <GROUP id="{9312539F-BE96-744E-8309-EAB8F9F3D200}" name="Helpers">
       <FILE id="gXKxRq" name="AHUMAudioHelpers.h" compile="0" resource="0"
             file="Source/AHUMAudioHelpers.h"/>
+      <FILE id="UkwLBZ" name="ASHUMHelperFunctions.h" compile="0" resource="0"
+            file="Source/ASHUMHelperFunctions.h"/>
       <FILE id="lq6n2z" name="ASHUMInterfaceDefines.h" compile="0" resource="0"
             file="Source/ASHUMInterfaceDefines.h"/>
       <FILE id="q6HGR7" name="ASHUMParameters.h" compile="0" resource="0"

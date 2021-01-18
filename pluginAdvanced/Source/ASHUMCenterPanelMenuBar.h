@@ -10,11 +10,15 @@
 
 #pragma once
 #include "ASHUMPAnelBase.h"
+#include "ASHUMParameterComboBox.h"
 
 class ASHUMCenterPanelMenuBar :public ASHUMPanelBase{
 public:
 	ASHUMCenterPanelMenuBar(PluginAdvancedAudioProcessor* inProcessor);
 	~ASHUMCenterPanelMenuBar();
-private:
 
+	void addFxTypeListener(ComboBox::Listener* inListener);
+	void removeFxTypeListener(ComboBox::Listener* inListener);
+private:
+	std::unique_ptr<ASHUMParameterComboBox> mFxTypeComboBox;
 };

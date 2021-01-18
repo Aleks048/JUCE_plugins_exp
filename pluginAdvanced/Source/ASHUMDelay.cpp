@@ -36,6 +36,7 @@ void ASHUMDelay::process(float* inAudio,
 						float inTime,
 						float inFeedback,
 						float inWetDry,
+						float inType,
 						float* inModulationBuffer,
 						float* outAudio,
 						int inNumSamplesToRender){
@@ -48,9 +49,13 @@ void ASHUMDelay::process(float* inAudio,
 	
 	for (int i = 0; i < inNumSamplesToRender; i++) {
 		
-		const double delayTimeModulation = (inTime + (0.002*inModulationBuffer[i]));//modulating the delay time
-
-		mTimeSmoothed = mTimeSmoothed - kParameterSmoothingCoeff_Generic * (mTimeSmoothed - delayTimeModulation);
+		if ((int)inType==kASHUMDelayType_Delay){
+			mTimeSmoothed = mTimeSmoothed - kParameterSmoothingCoeff_Generic * (mTimeSmoothed - inTime);
+		}
+		else{
+			const double delayTimeModulation = (0.003 + (0.002*inModulationBuffer[i]));//modulating the delay time
+			mTimeSmoothed = mTimeSmoothed - kParameterSmoothingCoeff_Generic * (mTimeSmoothed - delayTimeModulation);
+		}
 
 		const double delayTimeInSamples = mTimeSmoothed * mSampleRate;//delay time in smamples
 		const double sample = getInterpolatedSample(delayTimeInSamples);

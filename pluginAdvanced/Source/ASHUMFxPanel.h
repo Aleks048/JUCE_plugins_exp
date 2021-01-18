@@ -10,6 +10,7 @@
 
 #pragma once
 #include "ASHUMPanelBase.h"
+#include "ASHUMParameterSlider.h"
 
 enum ASHUMFxPanelStyle {
 	kASHUMFxPanelStyle_Delay,
@@ -18,7 +19,10 @@ enum ASHUMFxPanelStyle {
 
 };
 
-class ASHUMFxPanel :public ASHUMPanelBase {
+class ASHUMFxPanel :
+	public ASHUMPanelBase,
+	public juce::ComboBox::Listener
+{
 public:
 	ASHUMFxPanel(PluginAdvancedAudioProcessor* inProcessor);
 	~ASHUMFxPanel();
@@ -26,6 +30,10 @@ public:
 	void paint(Graphics& g) override;
 
 	void setFxPanelStyle(ASHUMFxPanelStyle inStyle);
+
+	void comboBoxChanged(ComboBox* comboBoxThatHasChanged) override;
 private:
 	ASHUMFxPanelStyle mStyle;
+
+	juce::OwnedArray<ASHUMParameterSlider> mSliders;
 };

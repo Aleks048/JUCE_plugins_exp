@@ -17,7 +17,9 @@ public:
 	ASHUMGainPanel(PluginAdvancedAudioProcessor* inProcessor);
 	~ASHUMGainPanel();
 
+	void paint(juce::Graphics& g) override;
+
 	void setParameterID(int iParameterID);
 private:
-	std::unique_ptr<ASHUMParameterSlider> mSlider;
+	juce::ScopedPointer<ASHUMParameterSlider> mSlider;
 };
