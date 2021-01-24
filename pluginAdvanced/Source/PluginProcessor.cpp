@@ -27,6 +27,7 @@ PluginAdvancedAudioProcessor::PluginAdvancedAudioProcessor()
 
 	initializeDSP();
 
+	mPresetManager = std::make_unique<ASHUMPresetManager>(this);
 }
 
 PluginAdvancedAudioProcessor::~PluginAdvancedAudioProcessor()
@@ -212,12 +213,32 @@ void PluginAdvancedAudioProcessor::getStateInformation (juce::MemoryBlock& destD
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+
+	XmlElement preset("ASHUM_StateInfo");
+
+	XmlElement* presetBody = new XmlElement("ASHUM_Preset");
+	mPresetManager->getXmlForPreset(presetBody);
+
+	preset.addChildElement(presetBody);
+
+	copyXmlToBinary(preset, destData);
 }
 
 void PluginAdvancedAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+
+	std::unique_ptr<XmlElement> xmlState = getXmlFromBinary(data, sizeInBytes);
+
+	if (xmlState) {
+		forEachXmlChildElement(*xmlState, subChild) {
+			mPresetManager->loadPresetForXml(subChild);
+		}
+	}
+	else {
+		jassertfalse;
+	}
 }
 
 void PluginAdvancedAudioProcessor::initializeDSP() {

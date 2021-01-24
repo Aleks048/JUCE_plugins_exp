@@ -3,6 +3,12 @@
 <JUCERPROJECT id="gk8Zea" name="pluginAdvanced" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="sTAObr" name="pluginAdvanced">
+    <GROUP id="{ED7CFFC5-CA41-A5AA-BB8D-803823C2A42C}" name="Managers">
+      <FILE id="JYssu1" name="ASHUMPresetManager.cpp" compile="1" resource="0"
+            file="Source/ASHUMPresetManager.cpp"/>
+      <FILE id="hWuVty" name="ASHUMPresetManager.h" compile="0" resource="0"
+            file="Source/ASHUMPresetManager.h"/>
+    </GROUP>
     <GROUP id="{4688DFCC-A7FF-92BE-AE9C-07314E443640}" name="Parameter Control">
       <FILE id="Kl7TF1" name="ASHUMParameterComboBox.cpp" compile="1" resource="0"
             file="Source/ASHUMParameterComboBox.cpp"/>

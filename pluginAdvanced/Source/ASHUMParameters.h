@@ -25,12 +25,12 @@ enum ASHUMParameter {
 
 static juce::String ASHUMParameterID [kParameter_TotalNumParameters] =
 {
-	"Input Gain",
+	"Input_Gain",
 	"Delay",
 	"Feedback",
-	"Wet Dry",
+	"Wet_Dry",
 	"Type",
-	"Output Gain",
-	"Modulation Rate",
-	"Modulation Depth",
+	"Output_Gain",
+	"Modulation_Rate",
+	"Modulation_Depth",
 };

@@ -13,6 +13,7 @@
 #include "ASHUMDelay.h"
 #include "ASHUMLfo.h"
 #include "ASHUMParameters.h"
+#include "ASHUMPresetManager.h"
 
 using namespace juce;
 //==============================================================================
@@ -66,11 +67,12 @@ private:
 	void initializeParameters();
 
 
-
 	std::unique_ptr<ASHUMGain> inputGain[2];
 	std::unique_ptr<ASHUMGain> outputGain[2];
 	std::unique_ptr<ASHUMDelay> mDelay[2];
 	std::unique_ptr<ASHUMLfo> mLfo[2];
+
+	std::unique_ptr<ASHUMPresetManager> mPresetManager;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginAdvancedAudioProcessor)
 };
