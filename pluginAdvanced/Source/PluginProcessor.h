@@ -61,6 +61,10 @@ public:
 
 	AudioProcessorValueTreeState parameters;// to store the value of parameters here
 
+	ASHUMPresetManager* getPresetManager() {
+		return mPresetManager;
+	}
+
 private:
 	/** internal*/
 	void initializeDSP();
@@ -72,7 +76,7 @@ private:
 	std::unique_ptr<ASHUMDelay> mDelay[2];
 	std::unique_ptr<ASHUMLfo> mLfo[2];
 
-	std::unique_ptr<ASHUMPresetManager> mPresetManager;
+	juce::ScopedPointer <ASHUMPresetManager> mPresetManager;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginAdvancedAudioProcessor)
 };

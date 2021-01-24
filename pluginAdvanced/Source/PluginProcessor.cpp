@@ -27,7 +27,7 @@ PluginAdvancedAudioProcessor::PluginAdvancedAudioProcessor()
 
 	initializeDSP();
 
-	mPresetManager = std::make_unique<ASHUMPresetManager>(this);
+	mPresetManager = new ASHUMPresetManager(this);
 }
 
 PluginAdvancedAudioProcessor::~PluginAdvancedAudioProcessor()

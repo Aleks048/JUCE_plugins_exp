@@ -41,15 +41,15 @@ public:
 private:
 	void storeLocalPreset();
 	
-	bool mCurrentPresetIsSaved();
+	bool mCurrentPresetIsSaved;
 	
-	juce::File mCurrentlyLoadedPreset();
+	juce::File mCurrentlyLoadedPreset;
 	
 	juce::Array<juce::File> mLocalPresets;
 	
 	juce::String mCurrentPresetName;
 	
-	juce::String mPresentDirectory;
+	juce::String mPresetDirectory;
 
 
 

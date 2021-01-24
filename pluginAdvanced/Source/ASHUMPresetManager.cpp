@@ -10,9 +10,30 @@
 
 #include "ASHUMPresetManager.h"
 
+#if JUCE_WINDOWS
+	static const juce::String directorySeparator = "\\";
+#elif JUCE_MAC
+	static const juce::String directorySeparator = "/";
+#endif
+
 ASHUMPresetManager::ASHUMPresetManager(juce::AudioProcessor* inProcessor) :
+	mCurrentPresetIsSaved(false),
+	mCurrentPresetName("Untitled"),
 	mProcessor(inProcessor)
 {
+
+	const juce::String pluginName = (juce::String) mProcessor->getName();
+
+	/*NEEDS TO BE CHANGED FOR GENERIC. WORKS NOW*/
+	mPresetDirectory = "C:" + directorySeparator + "git" + directorySeparator + 
+						"juce_projects" + directorySeparator + "pluginAdvanced" + directorySeparator + 
+						"Presets";
+
+	if (!juce::File(mPresetDirectory).exists()) {
+		juce::File(mPresetDirectory).createDirectory();
+	}
+
+	storeLocalPreset();
 };
 
 
@@ -43,20 +64,81 @@ void ASHUMPresetManager::loadPresetForXml(juce::XmlElement* inElement) {
 	}
 };
 
-int ASHUMPresetManager::getNumberOfPresets() {};
+int ASHUMPresetManager::getNumberOfPresets() {
+	return mLocalPresets.size();
+};
 
-juce::String ASHUMPresetManager::getPresetName(int inPresetIndex) {};
+juce::String ASHUMPresetManager::getPresetName(int inPresetIndex) {
+	return mLocalPresets[inPresetIndex].getFileNameWithoutExtension();
+};
 
-void ASHUMPresetManager::createNewPreset() {};
+void ASHUMPresetManager::createNewPreset() {
+	//set all the pratmeters to default and create a new preset
+	const int numParameters = mProcessor->getNumParameters();
 
-void ASHUMPresetManager::savePreset() {};
+	mCurrentPresetIsSaved = false;
+	mCurrentPresetName = "Untitled";
+};
 
-void ASHUMPresetManager::saveAsPreset(juce::String inPresetName) {};
+void ASHUMPresetManager::savePreset() {
+	juce::MemoryBlock destinationData;
+	mProcessor->getStateInformation(destinationData);
 
-void ASHUMPresetManager::loadPreset(int inPresetIndex) {};
+	mCurrentlyLoadedPreset.deleteFile();
 
-bool ASHUMPresetManager::getIsCurrentPresetSaved() {};
+	mCurrentlyLoadedPreset.appendData(destinationData.getData(), destinationData.getSize());
 
-juce::String ASHUMPresetManager::getCurrentPresetName() {};
+	mCurrentPresetIsSaved = true;
+};
 
-void ASHUMPresetManager::storeLocalPreset() {};
+void ASHUMPresetManager::saveAsPreset(juce::String inPresetName) {
+	juce::File presetFile = juce::File(mPresetDirectory + directorySeparator + inPresetName);
+
+	if (!presetFile.exists()) {
+		presetFile.create();
+	}
+	else {
+		presetFile.deleteFile();
+	}
+	juce::MemoryBlock destinationData;
+	mProcessor->getStateInformation(destinationData);//get data to memory block
+
+	presetFile.appendData(destinationData.getData(), destinationData.getSize());//put data into the file
+
+	mCurrentPresetIsSaved = true;
+	mCurrentPresetName = inPresetName;
+
+	storeLocalPreset();
+};
+
+void ASHUMPresetManager::loadPreset(int inPresetIndex) {
+	mCurrentlyLoadedPreset = mLocalPresets[inPresetIndex];
+
+	juce::MemoryBlock presetBinary;
+
+	if (mCurrentlyLoadedPreset.loadFileAsData(presetBinary)) {
+		mCurrentPresetIsSaved = true;
+		mCurrentPresetName = getPresetName(inPresetIndex);
+		mProcessor->setStateInformation(presetBinary.getData(), presetBinary.getSize());
+;	}
+};
+
+bool ASHUMPresetManager::getIsCurrentPresetSaved() {
+	return mCurrentPresetIsSaved;
+};
+
+juce::String ASHUMPresetManager::getCurrentPresetName() {
+	return mCurrentPresetName;
+};
+
+void ASHUMPresetManager::storeLocalPreset() {
+	mLocalPresets.clear();
+
+	for (juce::DirectoryIterator di(juce::File(mPresetDirectory), false,
+		"*" + (juce::String)PRESET_FILE_EXTENSION,
+		juce::File::TypesOfFileToFind::findFiles); di.next();) {
+
+		juce::File preset = di.getFile();
+		mLocalPresets.add(preset);
+	}
+};
