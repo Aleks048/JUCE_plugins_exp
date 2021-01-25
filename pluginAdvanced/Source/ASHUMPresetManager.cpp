@@ -92,7 +92,7 @@ void ASHUMPresetManager::savePreset() {
 };
 
 void ASHUMPresetManager::saveAsPreset(juce::String inPresetName) {
-	juce::File presetFile = juce::File(mPresetDirectory + directorySeparator + inPresetName);
+	juce::File presetFile = juce::File(mPresetDirectory + directorySeparator + inPresetName+PRESET_FILE_EXTENSION);
 
 	if (!presetFile.exists()) {
 		presetFile.create();
